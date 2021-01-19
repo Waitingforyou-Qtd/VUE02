@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        <!-- v-v-focus -->
+        <input type="text" v-focus>
+        <input type="text">
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 和样式相关的可以使用directiveh或者bind
+        Vue.directive('focus', {
+            inserted: function (el) {
+                // el表示指令所绑定的元素
+                el.focus();
+            }
+        });
+        // Vue.directive('color', {
+        //     bind: function (el, binding) {
+        //         el.style.backgroundColor = binding.value.color
+        //     }
+        // })
+        var vm = new Vue({
+            el: '#a',
+            data: {
+
+            },
+            methods: {
+                handle: function () {
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

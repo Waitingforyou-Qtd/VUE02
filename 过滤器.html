@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        <input type="text" v-model='m'>
+        <!-- 插入表达式  -->
+        <div>{{m | upper}}</div>
+        <div>{{m | upper | lower}}</div>
+        <!-- 绑定属性 -->
+        <div :xyz='m | upper'>测试数据</div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 自定义过滤器
+        Vue.filter('lower', function (val) {
+            return val.charAt(0).toLowerCase() + val.slice(1);
+        })
+        const vm = new Vue({
+            el: '#a',
+            data: {
+                m: ''
+            },
+            // 局部过滤器
+            filters: {
+                upper: function (val) {
+                    return val.charAt(0).toUpperCase() + val.slice(1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

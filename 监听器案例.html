@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        <div>
+            <span>用户名：</span>
+            <span>
+                <!-- 优化  防斗 -->
+                <input type="text" v-model.lazy='uname'>
+            </span>
+            <span>{{K}}</span>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#a',
+            data: {
+                uname: '',
+                K: ''
+            },
+            methods: {
+                checkName: function (uname) {
+                    // 调用接口，但是可以使用定时任务的方式模拟接口调用
+                    var that = this
+                    setTimeout(function () {
+                        if (uname == 'admin') {
+                            that.K = '用户名已经存在,请尝试更换!'
+                        } else {
+                            that.K = '用户名可以使用!'
+                        }
+                        // 延迟时间
+                    }, 2000)
+                }
+            },
+            watch: {
+                uname: function (val) {
+                    // 调用后台接口验证用户名的合法性
+                    this.checkName(val)
+                    this.K = '正在验证中...'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

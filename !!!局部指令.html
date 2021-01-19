@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用指令 -->
+        <input type="text" v-color="msg">
+        <input type="text" v-focus>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script>
+        // 定义指令
+        /* Vue.directive('color', {
+            bind: function(el, binding) {
+                // el 表示指令所绑定的元素
+                el.style.backgroundColor = binding.value.color;
+            }
+        }); */
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: "red"
+                }
+            },
+            directives: {
+                color: {
+                    bind: function (el, binding) {
+                        // el 表示指令所绑定的元素
+                        el.style.backgroundColor = binding.value.color;
+                    }
+                },
+                focus: {
+                    inserted: function (el) {
+                        el.focus();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
