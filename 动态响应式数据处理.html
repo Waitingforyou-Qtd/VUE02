@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        <ul>
+            <li v-for='item in s'>{{item}}</li>
+        </ul>
+        <div>
+            <div>{{info.name}}</div>
+            <div>{{info.age}}</div>
+            <div>{{info.gender}}</div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#a',
+            data: {
+                s: ['AA', 'BB', 'CC', 'DD', 'EE', 'FF'],
+                info: {
+                    name: 'zx',
+                    age: 20
+                }
+            }
+        })
+        vm.$set(vm.s, 1, 'QQ')
+        vm.$set(vm.info, 'WW', 'UU')
+    </script>
+</body>
+
+</html>
