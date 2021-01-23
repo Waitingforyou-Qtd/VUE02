@@ -30,8 +30,12 @@
                 }
             }
         })
-        vm.$set(vm.s, 1, 'QQ')
-        vm.$set(vm.info, 'WW', 'UU')
+        // 响应式
+        // 处理的数组名称 索引 数组的值
+        vm.$set(vm.s, 2, 'QQ')
+        // vm.info.gender = 'nan'
+        vm.$set(vm.info,'gender','nv')
+        // vm.$set(vm.info, 'WW', 'UU')
     </script>
 </body>
 

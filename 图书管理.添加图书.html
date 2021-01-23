@@ -3,16 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style type="text/css">
         .grid {
             margin: auto;
-            width: 500px;
+            width: 530px;
             text-align: center;
         }
 
         .grid table {
+            border-top: 1px solid #C2D89A;
             width: 100%;
             border-collapse: collapse;
         }
@@ -20,20 +20,45 @@
         .grid th,
         td {
             padding: 10;
-            border: 1px dashed orange;
+            border: 1px dashed #F3DCAB;
             height: 35px;
             line-height: 35px;
         }
 
         .grid th {
-            background-color: orange;
+            background-color: #F3DCAB;
+        }
+
+        .grid .book {
+            padding-bottom: 10px;
+            padding-top: 5px;
+            background-color: #F3DCAB;
         }
     </style>
 </head>
 
 <body>
-    <div id="app">
+    <div id="a">
         <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id">
+                            编号：
+                        </label>
+                        <!-- v-model收集id数据 -->
+                        <input type="text" id="id" v-model='id'>
+                        <label for="name">
+                            名称：
+                        </label>
+                        <!-- v-model收集书名数据 -->
+                        <input type="text" id="name" v-model='name'>
+                        <!-- 绑定点击事件 -->
+                        <button @click='h'>提交</button>
+                    </div>
+                </div>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -44,12 +69,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr :key='item.id' v-for='item in book'>
+                    <!-- 遍历书名 -->
+                    <tr :key='item.id' v-for='item in books'>
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.date}}</td>
                         <td>
-                            <!-- 阻止a标签默认行为 -->
+                            <!-- 阻止默认行为 -->
                             <a href="" @click.prevent>修改</a>
                             <span>|</span>
                             <a href="" @click.prevent>删除</a>
@@ -59,12 +85,17 @@
             </table>
         </div>
     </div>
-    <script src="js/vue.js"></script>
-    <script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript">
+        /*
+      图书管理-添加图书
+    */
         var vm = new Vue({
-            el: '#app',
+            el: '#a',
             data: {
-                book: [{
+                id: '',
+                name: '',
+                books: [{
                     id: 1,
                     name: '三国演义',
                     date: ''
@@ -97,8 +128,22 @@
                     name: 'HTML',
                     date: ''
                 }]
-            }
+            },
+            methods: {
+                h: function () {
+                    const book = {};
+                    book.id = this.id;
+                    book.name = this.name;
+                    book.data = '';
+                    // 追加图书
+                    this.books.push(book)
+                    // 清空id name
+                    this.id = '';
+                    this.name = ''
+                }
+            },
         });
     </script>
+</body>
 
 </html>

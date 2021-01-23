@@ -11,10 +11,11 @@
     <div id="a">
         <div>
             <span>
+                <!-- 双向数据绑定 -->
                 <input type="text" v-model='name'>
-                <button @click='add'>添加</button>
-                <button @click='del'>删除</button>
-                <button @click='change'>替换</button>
+                <button @click='t'>添加</button>
+                <button @click='s'>删除</button>
+                <button @click='q'>替换</button>
             </span>
         </div>
         <ul>
@@ -27,17 +28,21 @@
             el: '#a',
             data: {
                 name: "",
-                list: ['AA', 'BB', 'CC', 'DD']
+                list: ['AA', 'BB', 'CC', 'DD','EE','FF']
             },
             methods: {
-                add: function () {
+                // 添加
+                t: function () {
                     this.list.push(this.name)
                 },
-                del: function () {
+                // 删除
+                s: function () {
                     this.list.pop()
                 },
-                change: function () {
-                    this.list = this.list.slice(0, 3)
+                // 切换
+                q: function () {
+                    // slice:截取
+                    this.list = this.list.slice(0, 5)
                 }
             },
         })
